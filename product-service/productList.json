@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "count": 4,
+    "description": "Short Product Description1",
+    "price": 2.4,
+    "title": "Cinnamon Roast",
+    "temperature": 196,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/385_degrees_cinnamon_roast_coffee.png/150px-385_degrees_cinnamon_roast_coffee.png"
+  },
+  {
+    "id": "2",
+    "count": 6,
+    "description": "Short Product Description3",
+    "price": 10,
+    "title": "American Roast",
+    "temperature": 210,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/410_degrees_american_roast_coffee.png/150px-410_degrees_american_roast_coffee.png"
+  },
+  {
+    "id": "3",
+    "count": 7,
+    "description": "Short Product Description2",
+    "price": 23,
+    "title": "Full City Roast",
+    "temperature": 225,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/440_degrees_full_city_roast_coffee.png/150px-440_degrees_full_city_roast_coffee.png"
+  },
+  {
+    "id": "4",
+    "count": 12,
+    "description": "Short Product Description7",
+    "price": 15,
+    "title": "French Roast",
+    "temperature": 240,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/460_degrees_french_roast_coffee.png/150px-460_degrees_french_roast_coffee.png"
+  },
+  {
+    "id": "5",
+    "count": 7,
+    "description": "Short Product Description2",
+    "price": 23,
+    "title": "Italian Roast",
+    "temperature": 245,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/470_degrees_italian_roast_coffee.png/150px-470_degrees_italian_roast_coffee.png"
+  }
+]
