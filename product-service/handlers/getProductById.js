@@ -1,26 +1,24 @@
-'use strict';
-
-import productList from '../productList.json';
+import { Client } from 'pg';
+import { dbConfig } from '../dbConfig';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Credentials': true,
 };
 
-const findProduct = async (id) => {
-  return productList.find(p=>p.id == id)
-}
-
 export const getProductById = async (event) => {
-  console.log('Lambda invocation with event: ', event);
+  console.log('Lambda getProductById invocation with event: ', event);
+  const { productId } = event.pathParameters;
+  const client = new Client(dbConfig);
+  await client.connect();
   try {
-    const { productId } = event.pathParameters;
-    const product = await findProduct(productId);
-    if(product) {
+    const query = 'select * from products p inner join stocks s on p.id = s.product_id where p.id = $1';
+    const product = await client.query(query,[productId]);
+    if(product.rowCount > 0) {
       return {
         statusCode: 200,
         headers: corsHeaders,
-        body: JSON.stringify(product)
+        body: JSON.stringify(product.rows[0])
       };
     }
     else {
@@ -31,10 +29,14 @@ export const getProductById = async (event) => {
       };
     }
   } catch(e) {
+    console.log('Lambda getProductById error:', e.message);
     return {
       statusCode: 500,
       headers: corsHeaders,
       body: JSON.stringify({'err': e.message})
     };
+  }
+  finally {
+    client.end();
   }
 };

@@ -7,6 +7,12 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: eu-west-1
+  environment:
+    PG_HOST: ${self:custom.secrets.db.PG_HOST}
+    PG_PORT: ${self:custom.secrets.db.PG_PORT}
+    PG_DATABASE: ${self:custom.secrets.db.PG_DATABASE}
+    PG_USERNAME: ${self:custom.secrets.db.PG_USERNAME}
+    PG_PASSWORD: ${self:custom.secrets.db.PG_PASSWORD}
 
 plugins:
   - serverless-webpack
@@ -14,7 +20,10 @@ plugins:
 custom:
   webpack:
     webpackConfig: 'webpack.config.js'
-    includeModules: true
+    includeModules:
+      forceInclude:
+        - pg
+  secrets: ${file(secrets.yml)}
 
 functions:
   getAllProducts:
@@ -29,3 +38,9 @@ functions:
       - http:
           path: products/{productId}
           method: get
+  postProduct:
+    handler: handler.postProduct
+    events:
+      - http:
+          path: products
+          method: post
