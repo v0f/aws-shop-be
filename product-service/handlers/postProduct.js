@@ -14,7 +14,7 @@ export const postProduct = async event => {
   try {
     await client.query('BEGIN');
 
-    let query = 'insert into products (title, description, price, img_url) values ($1, $2, $3, $4)';
+    let query = 'insert into products (title, description, price, img_url) values ($1, $2, $3, $4) returning id';
     const product = await client.query(query,[title, description, price, img_url]);
 
     query = 'insert into stocks (product_id, count) values ($1, $2)';
